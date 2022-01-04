@@ -1,6 +1,6 @@
 # Go Calculator
 
-The purpose of this Calculator is to practice unit testing in Go using the `testing` package.
+The purpose of this Calculator is to practice unit testing and error reporting in Go using the `testing` package, implementing a RPN calculator.
 
 ## Testing
 
