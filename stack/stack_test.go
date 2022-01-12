@@ -35,20 +35,33 @@ func TestStackSize(t *testing.T) {
 	}
 }
 
+func TestStackPeekZeroElements(t *testing.T) {
+	var s stack.Stack
+	_, got := s.Peek()
+	want := false
+	if got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+}
+
 func TestStackPeek(t *testing.T) {
 	var s stack.Stack
 	var want float64 = 75
 
 	s.Push(75)
 
-	if got := s.Peek(); got != want {
-		t.Errorf("want %f, got %f", want, got)
+	if got, _ := s.Peek(); got != want {
+		t.Errorf("want %f, got %f.", want, got)
 	}
 }
 
 func TestStackPopEmpty(t *testing.T) {
 	var s stack.Stack
-	s.Pop()
+	want := false
+
+	if _, got := s.Pop(); got != want {
+		t.Errorf("want %t, got %t.", want, got)
+	}
 }
 
 func TestStackPop(t *testing.T) {
@@ -56,13 +69,17 @@ func TestStackPop(t *testing.T) {
 	var want float64 = 75
 
 	s.Push(75)
-	got := s.Pop()
+	got, ok := s.Pop()
 
 	if !s.IsEmpty() {
 		t.Errorf("Stack is not empty after pop. Size = %d.", s.Size())
 	}
 
+	if !ok {
+		t.Errorf("Pop did not return ok.")
+	}
+
 	if got != want {
-		t.Errorf("want %f, got %f", want, got)
+		t.Errorf("want %f, got %f.", want, got)
 	}
 }
