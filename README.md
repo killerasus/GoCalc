@@ -4,4 +4,4 @@ An over-engineered RPN calculator built to practice unit testing, and error repo
 
 ## Testing
 
-Run tests with `go test` command in the appropriate directories.
+Run tests with `go test ./stack ./calculator ./operations -v` command in the root directory.
