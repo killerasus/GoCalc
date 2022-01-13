@@ -27,3 +27,7 @@ func (c *Calculator) Push(a float64) {
 func (c *Calculator) Peek() (float64, bool) {
 	return c.stack.Peek()
 }
+
+func (c *Calculator) Pop() (float64, bool) {
+	return c.stack.Pop()
+}
