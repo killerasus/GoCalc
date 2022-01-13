@@ -1,6 +1,9 @@
 package calculator
 
-import "calculator/stack"
+import (
+	"calculator/operations"
+	"calculator/stack"
+)
 
 const (
 	Sum = iota
@@ -30,4 +33,17 @@ func (c *Calculator) Peek() (float64, bool) {
 
 func (c *Calculator) Pop() (float64, bool) {
 	return c.stack.Pop()
+}
+
+func (c *Calculator) Add() (float64, bool) {
+	if c.Size() < 2 {
+		return 0, false
+	} else {
+		a, _ := c.Pop()
+		b, _ := c.Pop()
+
+		resp := operations.Add(a, b)
+		c.Push(resp)
+		return resp, true
+	}
 }

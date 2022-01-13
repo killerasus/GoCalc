@@ -83,3 +83,50 @@ func TestCalculatorPop(t *testing.T) {
 		t.Errorf("expected %d, got %d.", size, expected)
 	}
 }
+
+func TestCalculatorAddZeroElements(t *testing.T) {
+	var calc calculator.Calculator
+	want := float64(0)
+	want_err := false
+	got, got_err := calc.Add()
+
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if got_err != want_err {
+		t.Errorf("want %t, got %t.", want_err, got_err)
+	}
+}
+
+func TestCalculatorAddOneElement(t *testing.T) {
+	var calc calculator.Calculator
+	want := float64(0)
+	want_err := false
+	calc.Push(1)
+	got, got_err := calc.Add()
+	want_size := 1
+	got_size := calc.Size()
+
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if got_err != want_err {
+		t.Errorf("want %t, got %t.", want_err, got_err)
+	}
+	if float64(got_size) != float64(want_size) {
+		t.Errorf("want %d, got %d.", want_size, got_size)
+	}
+}
+
+func TestCalculatorAdd(t *testing.T) {
+	var calc calculator.Calculator
+	calc.Push(2)
+	calc.Push(2)
+	want := float64(4)
+	got, _ := calc.Add()
+
+	if want != got {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+
+}
