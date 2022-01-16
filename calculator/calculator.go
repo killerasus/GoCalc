@@ -47,3 +47,21 @@ func (c *Calculator) Add() (float64, bool) {
 		return resp, true
 	}
 }
+
+func (c *Calculator) Subtract() (float64, bool) {
+	if c.Size() < 1 {
+		return 0, false
+	} else if c.Size() == 1 {
+		a, _ := c.Pop()
+		resp := operations.UnaryNegative(a)
+		c.Push(resp)
+		return resp, true
+	} else {
+		a, _ := c.Pop()
+		b, _ := c.Pop()
+
+		resp := operations.Subtract(a, b)
+		c.Push(resp)
+		return resp, true
+	}
+}
