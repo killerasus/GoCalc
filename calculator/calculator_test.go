@@ -151,10 +151,22 @@ func TestCalculatorSubtractUnary(t *testing.T) {
 	}
 }
 
-func TestCalculatorSubtract(t *testing.T) {
+func TestCalculatorSubtractNegativeResult(t *testing.T) {
 	var calc calculator.Calculator
 	calc.Push(2)
 	calc.Push(3)
+	want := float64(-1)
+	got, _ := calc.Subtract()
+
+	if want != got {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+}
+
+func TestCalculatorSubtractPositiveResult(t *testing.T) {
+	var calc calculator.Calculator
+	calc.Push(3)
+	calc.Push(2)
 	want := float64(1)
 	got, _ := calc.Subtract()
 

@@ -57,8 +57,8 @@ func (c *Calculator) Subtract() (float64, bool) {
 		c.Push(resp)
 		return resp, true
 	} else {
-		a, _ := c.Pop()
 		b, _ := c.Pop()
+		a, _ := c.Pop()
 
 		resp := operations.Subtract(a, b)
 		c.Push(resp)
