@@ -10,7 +10,7 @@ func TestCalculatorSize(t *testing.T) {
 	got := calc.Size()
 	want := 0
 	if got != want {
-		t.Errorf("want %d, got %d", want, got)
+		t.Errorf("want %d, got %d.", want, got)
 	}
 }
 
@@ -20,7 +20,7 @@ func TestCalculatorPush(t *testing.T) {
 	got := calc.Size()
 	want := 1
 	if got != want {
-		t.Errorf("want %d, got %d", want, got)
+		t.Errorf("want %d, got %d.", want, got)
 	}
 }
 
@@ -30,7 +30,20 @@ func TestCalculatorPeek(t *testing.T) {
 	got, _ := calc.Peek()
 	var want float64 = 4
 	if got != want {
-		t.Errorf("want %f, got %f", want, got)
+		t.Errorf("want %f, got %f.", want, got)
+	}
+}
+
+func TestCalculatorPeeki(t *testing.T) {
+	var calc calculator.Calculator
+	calc.Push(1)
+	calc.Push(2)
+	calc.Push(3)
+
+	var want float64 = 1
+	got, _ := calc.Peeki(2)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
 	}
 }
 
@@ -40,7 +53,7 @@ func TestCalculatorPopZeroElements(t *testing.T) {
 
 	want := false
 	if got != want {
-		t.Errorf("want %t, got %t", want, got)
+		t.Errorf("want %t, got %t.", want, got)
 	}
 }
 
