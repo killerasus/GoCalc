@@ -55,6 +55,64 @@ func TestStackPeek(t *testing.T) {
 	}
 }
 
+func TestStackPeekiZeroElements(t *testing.T) {
+	var s stack.Stack
+	var want bool = false
+
+	_, got := s.Peeki(0)
+
+	if got != want {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+}
+
+func TestStackPeekiMoreThanSize(t *testing.T) {
+	var s stack.Stack
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+
+	want := false
+	_, got := s.Peeki(3)
+	if want != got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+}
+
+func TestStackPeekiThreeElements(t *testing.T) {
+	var s stack.Stack
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+
+	var want float64 = 3
+	got, ok := s.Peeki(0)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if !ok {
+		t.Errorf("want %t, got %t.", true, ok)
+	}
+
+	want = 2
+	got, ok = s.Peeki(1)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if !ok {
+		t.Errorf("want %t, got %t.", true, ok)
+	}
+
+	want = 1
+	got, ok = s.Peeki(2)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if !ok {
+		t.Errorf("want %t, got %t.", true, ok)
+	}
+}
+
 func TestStackPopEmpty(t *testing.T) {
 	var s stack.Stack
 	want := false

@@ -4,6 +4,7 @@ type IStack interface {
 	Push(float64)
 	Pop() float64
 	Peek() float64
+	Peeki(i int) (float64, bool)
 	Size() int
 	IsEmpty() bool
 }
@@ -21,6 +22,15 @@ func (s *Stack) Peek() (float64, bool) {
 		return 0, false
 	}
 	return s.stack[len(s.stack)-1], true
+}
+
+func (s *Stack) Peeki(i int) (v float64, ok bool) {
+	if i >= len(s.stack) {
+		return
+	}
+	v = s.stack[len(s.stack)-(i+1)]
+	ok = true
+	return
 }
 
 func (s *Stack) Pop() (float64, bool) {

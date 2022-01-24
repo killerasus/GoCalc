@@ -31,6 +31,10 @@ func (c *Calculator) Peek() (float64, bool) {
 	return c.stack.Peek()
 }
 
+func (c *Calculator) Peeki(i int) (float64, bool) {
+	return c.stack.Peeki(i)
+}
+
 func (c *Calculator) Pop() (float64, bool) {
 	return c.stack.Pop()
 }
