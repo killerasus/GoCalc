@@ -1,6 +1,6 @@
 # Go RPN Calculator
 
-An over-engineered RPN calculator built to practice unit testing, and error reporting in Go using the `testing` package.
+An over-engineered RPN calculator built to practice unit testing, error reporting, GUI development, and CLI in Go.
 
 ## CLI
 
