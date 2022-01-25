@@ -3,6 +3,7 @@ package calculator
 import (
 	"calculator/operations"
 	"calculator/stack"
+	"math"
 )
 
 const (
@@ -79,6 +80,23 @@ func (c *Calculator) Multiplication() (float64, bool) {
 	b, _ := c.Pop()
 
 	resp := operations.Multiply(a, b)
+	c.Push(resp)
+	return resp, true
+}
+
+func (c *Calculator) Division() (float64, bool) {
+	if c.Size() < 2 {
+		return 0, false
+	}
+
+	a, _ := c.Pop()
+	b, _ := c.Pop()
+
+	resp := operations.Divide(a, b)
+	if math.IsInf(resp, 0) {
+		return resp, false
+	}
+
 	c.Push(resp)
 	return resp, true
 }

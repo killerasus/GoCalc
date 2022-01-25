@@ -2,6 +2,7 @@ package calculator_test
 
 import (
 	"calculator/calculator"
+	"math"
 	"testing"
 )
 
@@ -199,7 +200,7 @@ func TestCalculatorMultiplicationLessElements(t *testing.T) {
 	}
 }
 
-func TestCalculatorMultiplicatio(t *testing.T) {
+func TestCalculatorMultiplication(t *testing.T) {
 	var calc calculator.Calculator
 	var want float64 = 6
 
@@ -207,6 +208,59 @@ func TestCalculatorMultiplicatio(t *testing.T) {
 	calc.Push(3)
 
 	if got, _ := calc.Multiplication(); got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+}
+
+func TestCalculatorDivisionLessElements(t *testing.T) {
+	var calc calculator.Calculator
+	want := false
+	_, got := calc.Division()
+
+	if want != got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+
+	calc.Push(2)
+	_, got = calc.Division()
+
+	if want != got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+}
+
+func TestCalculatorDivisionByZero(t *testing.T) {
+	var calc calculator.Calculator
+	want := math.Inf(0)
+
+	calc.Push(0)
+	calc.Push(3)
+
+	got, ok := calc.Division()
+
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if ok != false {
+		t.Errorf("want %t, got %t.", false, ok)
+	}
+}
+
+func TestCalculatorDivision(t *testing.T) {
+	var calc calculator.Calculator
+	var want float64 = 3
+
+	calc.Push(3)
+	calc.Push(9)
+
+	if got, _ := calc.Division(); got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+
+	want = float64(8) / 3
+	calc.Push(8)
+
+	if got, _ := calc.Division(); got != want {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
