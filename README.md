@@ -14,8 +14,9 @@ A GUI version of the calculator made with the free and open source [fyne](https:
 
 ![Calculator GUI in Fyne](img/fynegui.png "GUI implemented using the Fyne toolkit")
 
-Compile with `go build gui/fyne/main.go`. Remember that you will have to provide a GNU C++ compiler (in Windows you can use [MSYS2](https://www.msys2.org/) to provide GCC).
+Compile with `go build -o gorpn.exe gui/fyne/main.go`. Remember that you will have to provide a GNU C++ compiler (in Windows you can use [MSYS2](https://www.msys2.org/) to provide GCC).
 
+Calculator icons created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/calculator).
 ## Testing
 
 Run tests with `go test ./stack ./calculator ./operations -v` command in the root directory.

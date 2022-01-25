@@ -22,6 +22,12 @@ func main() {
 	calcApp := app.New()
 	window := calcApp.NewWindow("Go RPN Calculator")
 	window.SetTitle("Go RPN Calculator")
+	icon, err := fyne.LoadResourceFromPath("./resources/calculator.png") // Expects being run from root folder
+	if err != nil {
+		fyne.LogError("Couldn't load app icon.", err)
+	} else {
+		window.SetIcon(icon)
+	}
 
 	memory := widget.NewLabel("Memory:")
 	stack := widget.NewLabelWithStyle("", fyne.TextAlignTrailing, fyne.TextStyle{})
