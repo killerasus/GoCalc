@@ -5,6 +5,7 @@ import (
 	"calculator/calculator"
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -14,8 +15,10 @@ func PrintHelp() {
 	fmt.Printf("\t<number>\tPushes <number> into stack\n")
 	fmt.Printf("\t+\t\tAdds two numbers on the stack\n")
 	fmt.Printf("\t-\t\tSubtracts two numbers on the stack or applies unary minus\n")
+	fmt.Printf("\t*\t\tMultiplies two numbers on the stack\n")
+	fmt.Printf("\t/\t\tDivides two numbers on the stack\n")
 	fmt.Printf("\thelp\t\tPrints this help\n")
-	fmt.Printf("\tCtrl+Z\t\tEnds the calculator\n")
+	fmt.Printf("\tCtrl+Z\t\tEnds the calculator (Windows)\n")
 }
 
 func main() {
@@ -54,6 +57,15 @@ func main() {
 				fmt.Printf("\t%f\n", value)
 			} else {
 				fmt.Println("Error: Stack size is less tanh 2:", calc.Size())
+			}
+		case "/":
+			value, ok := calc.Division()
+			if ok {
+				fmt.Printf("\t%f\n", value)
+			} else if math.IsInf(value, 0) {
+				fmt.Println("Error: Division by zero.")
+			} else {
+				fmt.Println("Error: Stack size is less than 2:", calc.Size())
 			}
 		case "help":
 			PrintHelp()
