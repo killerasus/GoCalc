@@ -17,9 +17,9 @@ func TestCalculatorSize(t *testing.T) {
 func TestCalculatorPush(t *testing.T) {
 	var calc calculator.Calculator
 	calc.Push(4)
-	got := calc.Size()
 	want := 1
-	if got != want {
+
+	if got := calc.Size(); got != want {
 		t.Errorf("want %d, got %d.", want, got)
 	}
 }
@@ -27,9 +27,9 @@ func TestCalculatorPush(t *testing.T) {
 func TestCalculatorPeek(t *testing.T) {
 	var calc calculator.Calculator
 	calc.Push(4)
-	got, _ := calc.Peek()
 	var want float64 = 4
-	if got != want {
+
+	if got, _ := calc.Peek(); got != want {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
@@ -41,18 +41,17 @@ func TestCalculatorPeeki(t *testing.T) {
 	calc.Push(3)
 
 	var want float64 = 1
-	got, _ := calc.Peeki(2)
-	if got != want {
+
+	if got, _ := calc.Peeki(2); got != want {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
 
 func TestCalculatorPopZeroElements(t *testing.T) {
 	var calc calculator.Calculator
-	_, got := calc.Pop()
-
 	want := false
-	if got != want {
+
+	if _, got := calc.Pop(); got != want {
 		t.Errorf("want %t, got %t.", want, got)
 	}
 }
@@ -136,19 +135,17 @@ func TestCalculatorAdd(t *testing.T) {
 	calc.Push(2)
 	calc.Push(2)
 	want := float64(4)
-	got, _ := calc.Add()
 
-	if want != got {
+	if got, _ := calc.Add(); want != got {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
 
 func TestCalculatorSubtractZeroElements(t *testing.T) {
 	var calc calculator.Calculator
-	_, got := calc.Subtract()
-
 	want := false
-	if got != want {
+
+	if _, got := calc.Subtract(); got != want {
 		t.Errorf("want %t, got %t", want, got)
 	}
 }
@@ -157,9 +154,8 @@ func TestCalculatorSubtractUnary(t *testing.T) {
 	var calc calculator.Calculator
 	calc.Push(2)
 	want := float64(-2)
-	got, _ := calc.Subtract()
 
-	if want != got {
+	if got, _ := calc.Subtract(); want != got {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
@@ -169,9 +165,8 @@ func TestCalculatorSubtractNegativeResult(t *testing.T) {
 	calc.Push(2)
 	calc.Push(3)
 	want := float64(-1)
-	got, _ := calc.Subtract()
 
-	if want != got {
+	if got, _ := calc.Subtract(); want != got {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
@@ -181,9 +176,37 @@ func TestCalculatorSubtractPositiveResult(t *testing.T) {
 	calc.Push(3)
 	calc.Push(2)
 	want := float64(1)
-	got, _ := calc.Subtract()
+
+	if got, _ := calc.Subtract(); want != got {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+}
+
+func TestCalculatorMultiplicationLessElements(t *testing.T) {
+	var calc calculator.Calculator
+	want := false
+	_, got := calc.Multiplication()
 
 	if want != got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+
+	calc.Push(2)
+	_, got = calc.Multiplication()
+
+	if want != got {
+		t.Errorf("want %t, got %t.", want, got)
+	}
+}
+
+func TestCalculatorMultiplicatio(t *testing.T) {
+	var calc calculator.Calculator
+	var want float64 = 6
+
+	calc.Push(2)
+	calc.Push(3)
+
+	if got, _ := calc.Multiplication(); got != want {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }

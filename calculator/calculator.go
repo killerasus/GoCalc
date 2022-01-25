@@ -69,3 +69,16 @@ func (c *Calculator) Subtract() (float64, bool) {
 		return resp, true
 	}
 }
+
+func (c *Calculator) Multiplication() (float64, bool) {
+	if c.Size() < 2 {
+		return 0, false
+	}
+
+	a, _ := c.Pop()
+	b, _ := c.Pop()
+
+	resp := operations.Multiply(a, b)
+	c.Push(resp)
+	return resp, true
+}

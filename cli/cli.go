@@ -52,8 +52,7 @@ func main() {
 		case "help":
 			PrintHelp()
 		default:
-			value, err := strconv.ParseFloat(input, 64)
-			if err != nil {
+			if value, err := strconv.ParseFloat(input, 64); err != nil {
 				fmt.Println("Error:", err)
 			} else {
 				calc.Push(value)
