@@ -49,6 +49,12 @@ func main() {
 			} else {
 				fmt.Println("Error: Stack size is less than 1:", calc.Size())
 			}
+		case "*":
+			if value, ok := calc.Multiplication(); ok {
+				fmt.Printf("\t%f\n", value)
+			} else {
+				fmt.Println("Error: Stack size is less tanh 2:", calc.Size())
+			}
 		case "help":
 			PrintHelp()
 		default:
