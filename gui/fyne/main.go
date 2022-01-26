@@ -31,7 +31,7 @@ func main() {
 	}
 
 	memory := widget.NewLabel("Memory:")
-	stack := widget.NewLabelWithStyle("", fyne.TextAlignTrailing, fyne.TextStyle{})
+	stack := widget.NewLabelWithStyle("", fyne.TextAlignTrailing, fyne.TextStyle{Monospace: true})
 
 	updateMemory := func() {
 		stack.SetText("")
@@ -41,7 +41,7 @@ func main() {
 		}
 	}
 
-	display := widget.NewLabelWithStyle("0", fyne.TextAlignTrailing, fyne.TextStyle{})
+	display := widget.NewLabelWithStyle("0", fyne.TextAlignTrailing, fyne.TextStyle{Bold: true, Monospace: true})
 
 	addNumber := func(v float64) {
 		if n, err := strconv.ParseFloat(display.Text, 64); err == nil {
