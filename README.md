@@ -6,6 +6,12 @@ An over-engineered RPN calculator built to practice unit testing, error reportin
 
 To run the command line interface of the Go RPN Calculator, go to folder `cli` and run `go run cli.go` or `go build`.
 
+CLI interface supports flags. See implemented flags and usage with `-h` or `-help`.
+
+For example: CLI supports expression evaluation. The result is stacked.
+
+![Using CLI for evaluating expressions](img/cli.png "Example using -eval option to evaluate RPN expression")
+
 ## GUI
 
 ### Fyne
