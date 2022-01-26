@@ -160,9 +160,7 @@ func main() {
 			multiplyPressed()
 		case fyne.KeySlash:
 			dividePressed()
-		case fyne.KeyEqual:
-			enterPressed()
-		case fyne.KeyReturn:
+		case fyne.KeyEqual, fyne.KeyReturn:
 			enterPressed()
 		default:
 
