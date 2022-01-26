@@ -264,3 +264,44 @@ func TestCalculatorDivision(t *testing.T) {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 }
+
+func TestCalculatorEvaluateEmptyExpression(t *testing.T) {
+	var calc calculator.Calculator
+	want := float64(0)
+
+	got, ok := calc.Evaluate("")
+	if got != 0 {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if ok {
+		t.Errorf("want %t, got %t.", false, ok)
+	}
+}
+
+func TestCalculatorEvaluateIncompleteExpression(t *testing.T) {
+	var calc calculator.Calculator
+	want := float64(0)
+	expression := "3 5 + *"
+
+	got, ok := calc.Evaluate(expression)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if ok {
+		t.Errorf("want %t, got %t.", false, ok)
+	}
+}
+
+func TestCalculatorEvaluateExpression(t *testing.T) {
+	var calc calculator.Calculator
+	want := float64(40)
+	expression := "3 5 + 7 2 - *"
+
+	got, ok := calc.Evaluate(expression)
+	if got != want {
+		t.Errorf("want %f, got %f.", want, got)
+	}
+	if !ok {
+		t.Errorf("want %t, got %t.", true, ok)
+	}
+}
