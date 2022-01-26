@@ -1,19 +1,11 @@
+// Implements a RPN calculator
+// (RPN) a b op --> (Arithmetic) a op b
 package calculator
 
 import (
 	"calculator/operations"
 	"calculator/stack"
 	"math"
-)
-
-const (
-	Sum = iota
-	Subtraction
-	Multiplication
-	Division
-	Raditiation
-	Mod
-	Negative
 )
 
 type Calculator struct {
@@ -76,8 +68,8 @@ func (c *Calculator) Multiplication() (float64, bool) {
 		return 0, false
 	}
 
-	a, _ := c.Pop()
 	b, _ := c.Pop()
+	a, _ := c.Pop()
 
 	resp := operations.Multiply(a, b)
 	c.Push(resp)
@@ -89,10 +81,10 @@ func (c *Calculator) Division() (float64, bool) {
 		return 0, false
 	}
 
-	a, _ := c.Pop()
-	b, _ := c.Pop()
+	divisor, _ := c.Pop()
+	dividend, _ := c.Pop()
 
-	resp := operations.Divide(a, b)
+	resp := operations.Divide(dividend, divisor)
 	if math.IsInf(resp, 0) {
 		return resp, false
 	}

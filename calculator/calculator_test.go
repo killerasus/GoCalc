@@ -233,8 +233,8 @@ func TestCalculatorDivisionByZero(t *testing.T) {
 	var calc calculator.Calculator
 	want := math.Inf(0)
 
-	calc.Push(0)
 	calc.Push(3)
+	calc.Push(0)
 
 	got, ok := calc.Division()
 
@@ -250,14 +250,14 @@ func TestCalculatorDivision(t *testing.T) {
 	var calc calculator.Calculator
 	var want float64 = 3
 
-	calc.Push(3)
 	calc.Push(9)
+	calc.Push(3)
 
 	if got, _ := calc.Division(); got != want {
 		t.Errorf("want %f, got %f.", want, got)
 	}
 
-	want = float64(8) / 3
+	want = float64(3) / 8
 	calc.Push(8)
 
 	if got, _ := calc.Division(); got != want {
