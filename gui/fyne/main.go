@@ -3,6 +3,7 @@ package main
 import (
 	"calculator/calculator"
 	"fmt"
+	"math"
 	"strconv"
 
 	"fyne.io/fyne/v2"
@@ -60,10 +61,8 @@ func main() {
 		widget.NewButton("8", func() { addNumber(8) }),
 		widget.NewButton("9", func() { addNumber(9) }),
 		widget.NewButton("+", func() {
-			_, ok := calc.Add()
-			if !ok {
+			if _, ok := calc.Add(); !ok {
 				display.SetText("Error")
-				return
 			}
 			updateMemory()
 		}),
@@ -71,10 +70,8 @@ func main() {
 		widget.NewButton("5", func() { addNumber(5) }),
 		widget.NewButton("6", func() { addNumber(6) }),
 		widget.NewButton("-", func() {
-			_, err := calc.Subtract()
-			if err {
+			if _, ok := calc.Subtract(); !ok {
 				display.SetText("Error")
-				return
 			}
 			updateMemory()
 		}),
@@ -82,7 +79,10 @@ func main() {
 		widget.NewButton("2", func() { addNumber(2) }),
 		widget.NewButton("3", func() { addNumber(3) }),
 		widget.NewButton("*", func() {
-			// TODO
+			if _, ok := calc.Multiplication(); !ok {
+				display.SetText("Error")
+			}
+			updateMemory()
 		}),
 		widget.NewButton("0", func() {
 			if v, err := strconv.ParseFloat(display.Text, 64); err != nil || v == 0.0 {
@@ -103,7 +103,14 @@ func main() {
 			updateMemory()
 		}),
 		widget.NewButton("/", func() {
-			// TODO
+			if v, ok := calc.Division(); !ok {
+				if v == math.Inf(0) {
+					display.SetText("Division by zero")
+				} else {
+					display.SetText("Error")
+				}
+			}
+			updateMemory()
 		}),
 	)
 
