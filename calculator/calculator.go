@@ -6,6 +6,8 @@ import (
 	"calculator/operations"
 	"calculator/stack"
 	"math"
+	"strconv"
+	"strings"
 )
 
 type Calculator struct {
@@ -91,4 +93,37 @@ func (c *Calculator) Division() (float64, bool) {
 
 	c.Push(resp)
 	return resp, true
+}
+
+func (c *Calculator) Evaluate(e string) (v float64, ok bool) {
+	exp := strings.Split(e, " ")
+	for _, s := range exp {
+		if n, err := strconv.ParseFloat(s, 64); err == nil {
+			c.Push(n)
+			v = n
+			ok = true
+		} else {
+			switch s {
+			case "+":
+				if v, ok = c.Add(); !ok {
+					return
+				}
+			case "-":
+				if v, ok = c.Subtract(); !ok {
+					return
+				}
+			case "*":
+				if v, ok = c.Multiplication(); !ok {
+					return
+				}
+			case "/":
+				if v, ok = c.Division(); !ok {
+					return
+				}
+			default: // Not recognized
+				return 0, false
+			}
+		}
+	}
+	return
 }

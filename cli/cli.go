@@ -17,13 +17,14 @@ func PrintHelp() {
 	fmt.Printf("\t-\t\tSubtracts two numbers on the stack or applies unary minus\n")
 	fmt.Printf("\t*\t\tMultiplies two numbers on the stack\n")
 	fmt.Printf("\t/\t\tDivides two numbers on the stack\n")
-	fmt.Printf("\thelp\t\tPrints this help\n")
 	fmt.Printf("\tCtrl+Z\t\tEnds the calculator (Windows)\n")
 }
 
 func main() {
 
-	help := flag.Bool("h", false, "This help")
+	help := flag.Bool("commands", false, "Prints available commands")
+	expression := flag.String("eval", "", "RPN expression to parse and evaluate\nExample:\n\t\"3 5 + 7 2 – *\"")
+
 	flag.Parse()
 
 	if *help {
@@ -34,6 +35,15 @@ func main() {
 	var calc calculator.Calculator
 	var input string
 	scanner := bufio.NewScanner(os.Stdin)
+
+	if len(*expression) > 0 {
+		v, ok := calc.Evaluate(strings.ToLower(*expression))
+		if !ok {
+			fmt.Println("Error evaluating the expression.")
+			return
+		}
+		fmt.Println("Expression: ", *expression, "=", v)
+	}
 
 	fmt.Print("> ")
 	for scanner.Scan() {
