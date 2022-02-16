@@ -5,6 +5,8 @@ go:
 
 addons:
   packages: &common_packages
+  - libx11-dev
+  - libxcursor-dev
   - libgl1-mesa-dev
 
 script:
