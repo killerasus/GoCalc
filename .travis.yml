@@ -1,5 +1,9 @@
 language: go
+
+go:
+- 1.17.x 
+
 script:
-  go test ./... -v
-  go build -o gorpn gui/fyne/main.go
-  go build -o gorpn-cli cli/main.go
+- go test ./... -v
+- go build -o gorpn gui/fyne/main.go
+- go build -o gorpn-cli cli/main.go
