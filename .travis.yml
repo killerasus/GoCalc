@@ -4,10 +4,12 @@ go:
 - 1.17.x 
 
 addons:
-  packages: &common_packages
+  apt_packages:
+  - libgl1-mesa-dev
+  - libwayland-bin
+  - xorg-dev
   - libx11-dev
   - libxcursor-dev
-  - libgl1-mesa-dev
 
 script:
 - go test ./... -v
