@@ -3,6 +3,10 @@ language: go
 go:
 - 1.17.x 
 
+addons:
+  packages: &common_packages
+  - libgl1-mesa-dev
+
 script:
 - go test ./... -v
 - go build -o gorpn gui/fyne/main.go
