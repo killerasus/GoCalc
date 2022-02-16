@@ -2,6 +2,8 @@
 
 An over-engineered RPN calculator built to practice unit testing, error reporting, GUI development, and CLI in Go.
 
+[![Build Status](https://app.travis-ci.com/killerasus/GoCalc.svg?branch=master)](https://app.travis-ci.com/github/killerasus/GoCalc)
+
 ## CLI
 
 To run the command line interface of the Go RPN Calculator, go to folder `cli` and run `go run cli.go` or `go build`.
