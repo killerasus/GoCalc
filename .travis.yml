@@ -1,0 +1,5 @@
+language: go
+script:
+  go test ./... -v
+  go build -o gorpn gui/fyne/main.go
+  go build -o gorpn-cli cli/main.go
