@@ -1,7 +1,7 @@
 package calculator_test
 
 import (
-	"calculator/calculator"
+	"calculator"
 	"math"
 	"testing"
 )

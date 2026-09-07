@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"calculator/calculator"
+	"calculator"
 	"flag"
 	"fmt"
 	"math"
